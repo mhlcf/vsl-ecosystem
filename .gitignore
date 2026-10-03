@@ -15,3 +15,4 @@ part1-sign-classifier/scaler.npz
 part1-sign-classifier/training_output.log
 .codebase-memory/
 .pytest_cache/
+*.egg-info/
