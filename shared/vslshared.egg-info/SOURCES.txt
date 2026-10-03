@@ -1,0 +1,15 @@
+pyproject.toml
+vslshared/__init__.py
+vslshared/classifier.py
+vslshared/config.py
+vslshared/db.py
+vslshared/keypoints.py
+vslshared/live_calibrator.py
+vslshared/models.py
+vslshared/template_reference.py
+vslshared/vocab.py
+vslshared.egg-info/PKG-INFO
+vslshared.egg-info/SOURCES.txt
+vslshared.egg-info/dependency_links.txt
+vslshared.egg-info/requires.txt
+vslshared.egg-info/top_level.txt

@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: vslshared
+Version: 0.1.0
+Summary: Shared core for the VSL ecosystem (keypoints, classifier, templates, db)
+Requires-Python: >=3.10
+Requires-Dist: numpy>=1.24
+Requires-Dist: opencv-python>=4.8
+Requires-Dist: mediapipe>=0.10
+Provides-Extra: ml
+Requires-Dist: torch>=2.0; extra == "ml"
+Requires-Dist: scikit-learn>=1.2; extra == "ml"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.4; extra == "dev"

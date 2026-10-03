@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pth
+*.npz
+*.mp4
+*.zip
+data/
+part1-sign-classifier/train/
+part1-sign-classifier/val/
+part1-sign-classifier/test/
+part1-sign-classifier/checkpoint/
+part1-sign-classifier/__pycache__/
+part1-sign-classifier/best_model.pth
+part1-sign-classifier/scaler.npz
+part1-sign-classifier/training_output.log
+.codebase-memory/
+.pytest_cache/
