@@ -158,46 +158,6 @@ Run part-specific tests:
 
 ---
 
-## 📁 Directory Structure / Cấu trúc thư mục
-
-```text
-Documents/
-├── part1-sign-classifier/          # Part 1: Sign Classifier
-│   ├── model.py · dataset.py · train.py · real_time_predict.py
-│   ├── best_model.pth               #   BiLSTM weights (~44 MB)
-│   ├── scaler.npz                   #   Normalization stats (mean/std per feature)
-│   ├── label_map.json               #   3315 class indices
-│   ├── train/ val/ test/            #   ~145k NPZ samples (3315 classes)
-│   ├── checkpoint/ logs/            #   Resume checkpoint + training curves
-│   └── README.md
-├── part2-speech-to-sign/          # Part 2: Speech → Sign
-│   ├── backend/                     #   Whisper, Grammar, Avatar Controller
-│   ├── frontend/                    #   PyQt6: Mic, Chat, 3D Viewport
-│   ├── avatar/                      #   Matplotlib 3D Renderer
-│   └── README.md · API_DOCUMENTATION.md · ARCHITECTURE.md · ...
-├── part3-gamification/            # Part 3: Gamification
-│   ├── backend/                     #   Game Logic, Scoring, Levels
-│   ├── frontend/                    #   PyQt6: 5 Screens + Webcam
-│   └── README.md · API_DOCUMENTATION.md · ARCHITECTURE.md · ...
-├── shared/                          # vslshared library
-│   ├── vslshared/                   #   config, keypoints, classifier, templates, vocab, db
-│   └── tests/                       #   Integration contract tests
-├── vsl_data/                        # Vocabulary + Reference templates + SQLite DB
-│   ├── vocabulary.json              #   3315 entries
-│   └── reference/
-│       └── reference_templates.npz  #   3311 signs × (30, 201) float32
-├── docs/
-│   ├── GUIDE.md                     #   Full usage guide
-│   └── screenshots/                 #   7 PNG demo images
-├── tools/                           # Screenshot generators
-├── requirements.txt · pytest.ini · LICENSE
-├── run_part1.sh · run_part2.sh · run_part3.sh
-├── run_tests.sh · smoke.sh
-└── README.md                        # (this file)
-```
-
----
-
 ## 🔧 Part 1: Sign Classifier / Bộ phân loại ký hiệu
 
 ### Purpose / Mục đích
@@ -460,9 +420,9 @@ classDiagram
 
 | File | Size / Kích thước | Description / Mô tả |
 |------|-------------------|---------------------|
-| `best_model.pth` | ~44 MB | BiLSTM state_dict |
-| `scaler.npz` | ~40 KB | Per-feature mean/std (shape `(1, 1, 201)`) |
-| `label_map.json` | ~87 KB | 3315 entries: `"sign_name": class_index` |
+| `part1-sign-classifier/best_model.pth` | ~44 MB | BiLSTM state_dict |
+| `part1-sign-classifier/scaler.npz` | ~40 KB | Per-feature mean/std (shape `(1, 1, 201)`) |
+| `part1-sign-classifier/label_map.json` | ~87 KB | 3315 entries: `"sign_name": class_index` |
 | `part1-sign-classifier/logs/training_curves.png` | ~150 KB | Loss & accuracy curves |
 
 ### Reference Templates / Mẫu tham chiếu

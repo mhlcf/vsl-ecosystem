@@ -45,7 +45,7 @@ cd "$HOME/Documents/part3-gamification"
 ## Chạy test
 
 ```bash
-cd "$HOME/Documents" && ./run_tests.sh          # toàn repo (89 tests)
+cd "$HOME/Documents" && ./run_tests.sh          # toàn repo (104 tests)
 # riêng phần này:
 "$HOME/Documents/venv/bin/python" -m pytest part3-gamification -q
 ```
@@ -59,7 +59,7 @@ part3-gamification/
 │   ├── scoring_engine.py   # classify_live, score_sequence, 4 tiêu chí
 │   ├── level_manager.py    # Level, level_for (30 cấp, is_unlocked, stars)
 │   ├── feedback_generator.py
-│   ├── user_manager.py     # đăng ký/nạp/tiến bộ (SQLite vsl_data/learners.db)
+│   ├── user_manager.py     # đăng ký/nạp/tiến bộ (SQLite vsl_data/vsl.db)
 │   ├── pose_extractor.py   # MediaPipe → (21,3) bàn tay
 │   ├── sign_classifier.py  # so khớp reference template (DTW) / model Part 1
 │   └── models.py
@@ -75,7 +75,8 @@ part3-gamification/
 
 - **Điểm theo tham chiếu chung với Part 2** — cùng `reference_templates.npz`
   và `vocabulary.json`, nên ký hiệu game dạy luôn có sẵn hoạt hình avatar.
-- **Không phụ thuộc model Part 1**: mặc định dùng Template/DTW backend
-  (`classify_live`); khi có model `vsl_model.pt` thì ưu tiên nếu tự tin.
-- **DB riêng** `vsl_data/learners.db`; test tự tách DB tạm qua `VSL_DB_PATH`.
+- **Không bắt buộc model Part 1**: scoring dùng template chung
+  (`classify_live`); phân loại qua `create_classifier("auto")` — tự ưu tiên
+  `part1-sign-classifier/best_model.pth` khi file này có, ngược lại dùng template.
+- **DB riêng** `vsl_data/vsl.db`; test tự tách DB tạm qua `VSL_DB_PATH`.
 - **feedback bằng tiếng Việt**, theo tiêu chí thấp nhất.

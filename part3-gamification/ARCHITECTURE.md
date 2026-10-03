@@ -17,7 +17,7 @@
 │     ├─ hand_shape      ├─ position                            │
 │     ├─ movement        └─ palm_orientation                   │
 │  feedback_generator ──► câu gợi ý theo tiêu chí thấp nhất    │
-│  user_manager ──► vsl_data/learners.db (stars, points, unlock)│
+│  user_manager ──► vsl_data/vsl.db (stars, points, unlock)│
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -44,7 +44,7 @@
 
 ## Persistence
 
-`vsl_data/learners.db` (SQLite) — schema:
+`vsl_data/vsl.db` (SQLite) — schema:
 
 ```
 users(user_id PK, username UNIQUE, total_stars, total_points)

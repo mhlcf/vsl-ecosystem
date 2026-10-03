@@ -18,7 +18,7 @@
 cd "$HOME/Documents"
 ./venv/bin/python -m pytest part2-speech-to-sign -q -x     # chạy riêng Phần 2
 ./venv/bin/python -m pytest part2-speech-to-sign/frontend/tests -q
-./run_tests.sh                                             # toàn bộ 89 tests
+./run_tests.sh                                             # toàn bộ 104 tests
 ```
 
 Để xem log backend: chạy app với `-v` / bật logging:

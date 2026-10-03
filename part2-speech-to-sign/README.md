@@ -40,7 +40,7 @@ cd "$HOME/Documents/part2-speech-to-sign"
 ## Chạy test
 
 ```bash
-cd "$HOME/Documents" && ./run_tests.sh          # toàn repo (89 tests)
+cd "$HOME/Documents" && ./run_tests.sh          # toàn repo (104 tests)
 # riêng phần này:
 "$HOME/Documents/venv/bin/python" -m pytest part2-speech-to-sign -q
 ```
@@ -71,7 +71,7 @@ part2-speech-to-sign/
 4. `avatar_controller` ánh xạ từng ký hiệu sang clip keypoint `reference://sign`
    và sinh `animation_sequence` (word, duration, frames).
 5. `AvatarViewport` phát lại; người dùng xem & replay.
-6. Lịch sử lưu trong phiên (có thể mở rộng `vsl_data/learners.db` nếu cần).
+6. Lịch sử lưu trong phiên (có thể mở rộng `vsl_data/vsl.db` nếu cần).
 
 ## Quyết định thiết kế
 
