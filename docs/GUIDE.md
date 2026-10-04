@@ -47,14 +47,25 @@ cần nhìn thấy rõ bàn tay.
 > Nếu chưa có model Whisper, gõ text vẫn dùng được bình thường (xem gợi ý ở
 > `part2-speech-to-sign/TROUBLESHOOTING.md`).
 
-### Phần 1 — Nhận diện ký hiệu realtime (webcam)
+### Phần 1 — Nhận diện ký hiệu realtime + ghép câu
 
 ```bash
 ./run_part1.sh
 ```
 
-Nhận một ký hiệu lẻ (3315 từ) theo thời gian thực — top-3 đề xuất hiển thị
-trên terminal, nhấn `q` để thoát. Model: `part1-sign-classifier/best_model.pth`.
+Nhận ký hiệu lẻ (3315 từ) theo thời gian thực. Từ ổn định được tích lũy —
+**đủ 3 từ tự ghép thành câu tiếng Việt**, hoặc nhấn `s` để ghép ngay.
+
+| Phím | Chức năng |
+|------|-----------|
+| `s` | Ghép câu (qua LLM API nếu cấu hình, không thì ghép cơ bản) |
+| `c` | Xóa buffer + câu |
+| `u` | Xóa từ cuối |
+| `q` | Thoát |
+
+> Muốn câu tự nhiên hơn? Tạo `part1-sign-classifier/.env` (copy từ
+> `.env.example`) và điền `VSL_LLM_API_KEY` — hỗ trợ mọi endpoint kiểu
+> OpenAI. Chưa có key vẫn chạy tốt với ghép cơ bản.
 
 ---
 

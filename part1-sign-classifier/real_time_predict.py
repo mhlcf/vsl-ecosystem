@@ -9,6 +9,7 @@ import mediapipe as mp
 from collections import deque
 
 from model import VSLModel
+from sentence_builder import AUTO_SENTENCE_WORDS, SentenceComposer, WordBuffer
 
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -83,7 +84,14 @@ def main():
 
     sequence = deque(maxlen=SEQ_LENGTH)
     pred_history = deque(maxlen=SMOOTHING_WINDOW)
-    print("Press 'q' to quit.")
+    word_buffer = WordBuffer(threshold=CONFIDENCE_THRESHOLD)
+    composer = SentenceComposer()
+    print("Press 's' = ghép câu · 'c' = xóa · 'u' = xóa từ cuối · 'q' = thoát.")
+    if composer.ready:
+        print(f"LLM: {composer.model} @ {composer.base_url}")
+    else:
+        print("LLM: chưa kích hoạt (thêm VSL_LLM_API_KEY vào .env) -> ghép cơ bản.")
+    last_printed = ""
 
     while True:
         ret, frame = cap.read()
@@ -94,6 +102,7 @@ def main():
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = holistic.process(rgb)
 
+        has_hand = bool(results.left_hand_landmarks or results.right_hand_landmarks)
         keypoints = extract_keypoints(results)
         sequence.append(keypoints)
 
@@ -119,6 +128,13 @@ def main():
             pred_history.append(top3_idxs[0])
             smoothed_pred = max(set(pred_history), key=list(pred_history).count)
 
+            committed = word_buffer.feed(
+                idx_to_label.get(smoothed_pred) if has_hand else None,
+                float(top3_probs[0]),
+            )
+            if committed and len(word_buffer.words) >= AUTO_SENTENCE_WORDS:
+                composer.compose(list(word_buffer.words))
+
             top3_text = []
             for i in range(3):
                 confidence = top3_probs[i]
@@ -141,9 +157,36 @@ def main():
             cv2.putText(frame, text, (30, y_offset),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (200, 200, 200), 2)
 
+        h, w = frame.shape[:2]
+        if word_buffer.words:
+            cv2.putText(frame, "words: " + " ".join(word_buffer.words),
+                        (30, h - 95), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 0), 2)
+        status_prefix = {"composing": "...dang ghep... ", "api": "[LLM] ",
+                         "fallback": "[co ban] "}.get(composer.status, "")
+        if composer.sentence:
+            cv2.putText(frame, status_prefix + composer.sentence,
+                        (30, h - 55), cv2.FONT_HERSHEY_SIMPLEX, 0.9,
+                        (0, 255, 255) if composer.status == "api" else (180, 180, 255), 2)
+            if composer.sentence != last_printed:
+                last_printed = composer.sentence
+                print(f"CÂU ({composer.status}): {composer.sentence}")
+        cv2.putText(frame, "'s' cau · 'c' xoa · 'u' xoa tu cuoi · 'q' thoat",
+                    (30, h - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (150, 150, 150), 1)
+
         cv2.imshow('VSL Real-Time Recognition', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('q'):
             break
+        if key == ord('s'):
+            composer.compose(list(word_buffer.words), force=True)
+        elif key == ord('c'):
+            word_buffer.clear()
+            composer.reset()
+            last_printed = ""
+            print("Đã xóa buffer.")
+        elif key == ord('u'):
+            word_buffer.undo()
+            print(f"Buffer: {' '.join(word_buffer.words) or '(trống)'}")
 
     cap.release()
     cv2.destroyAllWindows()

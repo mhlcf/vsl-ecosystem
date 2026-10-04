@@ -163,6 +163,9 @@ Run part-specific tests:
 ### Purpose / Mục đích
 
 Classify **isolated signs** from a 60-frame keypoint sequence into 3315 vocabulary entries.
+Recognized words are accumulated and composed into a natural Vietnamese
+sentence (auto at 3 words or key `s`) via an OpenAI-compatible LLM API,
+with an offline rule-based fallback (`part1-sign-classifier/sentence_builder.py`).
 
 ### Architecture / Kiến trúc
 
