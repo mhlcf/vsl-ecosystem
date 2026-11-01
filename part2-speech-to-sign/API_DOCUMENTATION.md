@@ -6,8 +6,8 @@ Base URL: `http://localhost:8001`. Format JSON. Lỗi trả về
 Khởi động server:
 
 ```bash
-cd "$HOME/Documents/part2-speech-to-sign"
-"$HOME/Documents/venv/bin/python" -m backend.app        # mặc định port 8001
+cd "$HOME/Games/vsl-ecosystem/part2-speech-to-sign"
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m backend.app        # mặc định port 8001
 ```
 
 OpenAPI (swagger) tự sinh tại `http://localhost:8001/docs`.

@@ -93,7 +93,7 @@ graph TB
 ### Quick setup / Cài đặt nhanh
 
 ```bash
-cd ~/Documents
+cd ~/Games/vsl-ecosystem
 python -m venv venv
 ./venv/bin/pip install -r requirements.txt
 ./venv/bin/pip install -e shared

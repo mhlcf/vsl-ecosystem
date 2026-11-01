@@ -15,13 +15,13 @@ Webcam ─► MediaPipe (tay) ─► classify_live() ─► accuracy by 4 criter
 ## Cài đặt / chạy
 
 ```bash
-cd "$HOME/Documents/part3-gamification"
+cd "$HOME/Games/vsl-ecosystem/part3-gamification"
 
 # giao diện đồ họa
-"$HOME/Documents/venv/bin/python" -m frontend.main
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m frontend.main
 
 # API server (port 8002)
-"$HOME/Documents/venv/bin/python" -m backend.app
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m backend.app
 # hoặc: ../../venv/bin/uvicorn backend.app:app --port 8002
 ```
 
@@ -45,9 +45,9 @@ cd "$HOME/Documents/part3-gamification"
 ## Chạy test
 
 ```bash
-cd "$HOME/Documents" && ./run_tests.sh          # toàn repo (104 tests)
+cd "$HOME/Games/vsl-ecosystem" && ./run_tests.sh          # toàn repo (104 tests)
 # riêng phần này:
-"$HOME/Documents/venv/bin/python" -m pytest part3-gamification -q
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m pytest part3-gamification -q
 ```
 
 ## Cấu trúc

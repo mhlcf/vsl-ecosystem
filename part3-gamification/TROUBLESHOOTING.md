@@ -15,7 +15,7 @@
 ## Gỡ lỗi nhanh
 
 ```bash
-cd "$HOME/Documents"
+cd "$HOME/Games/vsl-ecosystem"
 ./venv/bin/python -m pytest part3-gamification -q        # chỉ Phần 3
 ./venv/bin/python -m pytest shared/tests/test_integration.py -q   # ràng buộc Phần 2↔3
 ./run_tests.sh                                            # toàn bộ 104 tests

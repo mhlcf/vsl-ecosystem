@@ -15,13 +15,13 @@ Lời nói ──► Whisper (NCCL) ──► Text ──► Grammar Translator 
 ## Cài đặt / chạy
 
 ```bash
-cd "$HOME/Documents/part2-speech-to-sign"
+cd "$HOME/Games/vsl-ecosystem/part2-speech-to-sign"
 
 # giao diện đồ họa
-"$HOME/Documents/venv/bin/python" -m frontend.main
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m frontend.main
 
 # API server (port 8001)
-"$HOME/Documents/venv/bin/python" -m backend.app
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m backend.app
 # hoặc: ../../venv/bin/uvicorn backend.app:app --port 8001
 ```
 
@@ -40,9 +40,9 @@ cd "$HOME/Documents/part2-speech-to-sign"
 ## Chạy test
 
 ```bash
-cd "$HOME/Documents" && ./run_tests.sh          # toàn repo (104 tests)
+cd "$HOME/Games/vsl-ecosystem" && ./run_tests.sh          # toàn repo (104 tests)
 # riêng phần này:
-"$HOME/Documents/venv/bin/python" -m pytest part2-speech-to-sign -q
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m pytest part2-speech-to-sign -q
 ```
 
 ## Cấu trúc

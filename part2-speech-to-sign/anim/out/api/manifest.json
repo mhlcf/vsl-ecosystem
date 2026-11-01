@@ -1,0 +1,92 @@
+[
+ {
+  "q": "hello",
+  "slug": "hello",
+  "bytes": 1755,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "good morning",
+  "slug": "good_morning",
+  "bytes": 4791,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "good night",
+  "slug": "good_night",
+  "bytes": 2687,
+  "phrases": 1,
+  "words": [
+   2
+  ]
+ },
+ {
+  "q": "thank you",
+  "slug": "thank_you",
+  "bytes": 4631,
+  "phrases": 1,
+  "words": [
+   2
+  ]
+ },
+ {
+  "q": "yes",
+  "slug": "yes",
+  "bytes": 3084,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "no",
+  "slug": "no",
+  "bytes": 3395,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "sorry",
+  "slug": "sorry",
+  "bytes": 802,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "please",
+  "slug": "please",
+  "bytes": 4125,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "welcome",
+  "slug": "welcome",
+  "bytes": 2052,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ },
+ {
+  "q": "peace",
+  "slug": "peace",
+  "bytes": 811,
+  "phrases": 1,
+  "words": [
+   1
+  ]
+ }
+]

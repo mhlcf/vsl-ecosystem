@@ -1,10 +1,10 @@
 # Hướng dẫn sử dụng
 
-Toàn bộ đã cài sẵn trong `~/Documents` (Python venv, dữ liệu, model). Không cần
+Toàn bộ đã cài sẵn trong `~/Games/vsl-ecosystem` (Python venv, dữ liệu, model). Không cần
 lệnh cài đặt gì thêm — chỉ cần chạy.
 
 ```bash
-cd ~/Documents
+cd ~/Games/vsl-ecosystem
 ```
 
 ---
@@ -75,10 +75,10 @@ Hai server FastAPI, có Swagger tự sinh để thao tác thử.
 
 ```bash
 # Phần 2 — Speech→Sign (port 8001)
-cd ~/Documents/part2-speech-to-sign && ../../venv/bin/python -m backend.app
+cd ~/Games/vsl-ecosystem/part2-speech-to-sign && ../../venv/bin/python -m backend.app
 
 # Phần 3 — Game/Scoring (port 8002)
-cd ~/Documents/part3-gamification  && ../../venv/bin/python -m backend.app
+cd ~/Games/vsl-ecosystem/part3-gamification  && ../../venv/bin/python -m backend.app
 ```
 
 | Server | Swagger | Endpoint chính |
@@ -89,7 +89,7 @@ cd ~/Documents/part3-gamification  && ../../venv/bin/python -m backend.app
 Kiểm tra nhanh cả hệ thống (bật 2 server + gọi API thật):
 
 ```bash
-cd ~/Documents && ./smoke.sh
+cd ~/Games/vsl-ecosystem && ./smoke.sh
 ```
 
 Ví dụ gọi nhanh bằng `curl` — xem `part2-speech-to-sign/USAGE_EXAMPLES.md` và
@@ -100,7 +100,7 @@ Ví dụ gọi nhanh bằng `curl` — xem `part2-speech-to-sign/USAGE_EXAMPLES.
 ## 3. Chạy kiểm thử
 
 ```bash
-cd ~/Documents && ./run_tests.sh        # 104 tests (cả 3 phần + shared)
+cd ~/Games/vsl-ecosystem && ./run_tests.sh        # 104 tests (cả 3 phần + shared)
 ```
 
 Chạy từng phần:

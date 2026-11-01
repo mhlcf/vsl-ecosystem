@@ -3,7 +3,7 @@
 ## 1. Dùng API qua `curl` — text → VSL → avatar
 
 ```bash
-cd "$HOME/Documents"
+cd "$HOME/Games/vsl-ecosystem"
 ./venv/bin/python -m uvicorn --app-dir part2-speech-to-sign backend.app:app --port 8001 &
 sleep 2
 

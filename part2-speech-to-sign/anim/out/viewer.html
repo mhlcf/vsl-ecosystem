@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Hand Talk avatar viewer</title>
+<style>
+  html,body{margin:0;height:100%;background:#12121a;color:#eee;font:13px system-ui}
+  #app{display:flex;height:100%}
+  #side{width:280px;padding:8px;overflow:auto;background:#1b1b26}
+  #view{flex:1}
+  button{width:100%;margin:2px 0;padding:6px;background:#2a2a3a;color:#ddd;border:1px solid #3a3a4a;border-radius:4px;text-align:left;cursor:pointer}
+  button:hover{background:#34344a}
+  #hud{position:absolute;left:300px;bottom:8px;font-size:12px;opacity:.8}
+</style>
+</head>
+<body>
+<div id="app"><div id="side"></div><div id="view"></div></div>
+<div id="hud"></div>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const file = new URLSearchParams(location.search).get('model') || 'HUGO_animated.glb';
+const clock = new THREE.Clock();
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x12121a);
+const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 100);
+camera.position.set(0, 1.5, 4.2);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(1);
+document.getElementById('view').appendChild(renderer.domElement);
+new OrbitControls(camera, renderer.domElement).target.set(0, 1.35, 0);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x444455, 2.2));
+const d = new THREE.DirectionalLight(0xffffff, 2.0); d.position.set(1, 3, 3); scene.add(d);
+
+const hud = document.getElementById('hud');
+const mixerHolder = {};
+new GLTFLoader().load(file, (gltf) => {
+  scene.add(gltf.scene);
+  const mixer = new THREE.AnimationMixer(gltf.scene);
+  mixerHolder.mixer = mixer;
+  const side = document.getElementById('side');
+  gltf.animations.forEach((clip, i) => {
+    const b = document.createElement('button');
+    b.textContent = `${clip.name}  (${clip.duration.toFixed(2)}s)`;
+    b.onclick = () => {
+      mixer.stopAllAction();
+      const a = mixer.clipAction(clip);
+      a.reset().play();
+      hud.textContent = clip.name;
+      window.__playing = clip.name;
+    };
+    side.appendChild(b);
+    if (i === 0) setTimeout(() => b.click(), 50);
+  });
+  hud.textContent = `${gltf.animations.length} animations loaded`;
+  window.__clips = gltf.animations;
+  window.__mixer = mixer;
+  window.__scene = gltf.scene;
+  window.__THREE = THREE;
+  window.__ready = true;
+}, undefined, (e) => { hud.textContent = 'ERROR ' + e; });
+
+function resize() {
+  const el = document.getElementById('view');
+  renderer.setSize(el.clientWidth, el.clientHeight);
+  camera.aspect = el.clientWidth / el.clientHeight;
+  camera.updateProjectionMatrix();
+}
+addEventListener('resize', resize); resize();
+
+// deterministic hook for screenshots: play clip N and seek to t seconds
+window.__play = (name, t = 0) => {
+  const mixer = mixerHolder.mixer;
+  const clips = window.__clips || [];
+  mixer.stopAllAction();
+  const c = clips.find((x) => x.name === name) || clips[0];
+  const a = mixer.clipAction(c);
+  a.reset().play();
+  mixer.update(t);
+  hud.textContent = c.name + ' @ ' + t;
+  return c.name;
+};
+
+const loop = () => {
+  requestAnimationFrame(loop);
+  if (mixerHolder.mixer) mixerHolder.mixer.update(clock.getDelta());
+  renderer.render(scene, camera);
+};
+loop();
+</script>
+</body>
+</html>

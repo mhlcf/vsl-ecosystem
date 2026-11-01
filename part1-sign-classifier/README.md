@@ -42,13 +42,13 @@ part1-sign-classifier/
 ## Chạy
 
 ```bash
-cd "$HOME/Documents"
+cd "$HOME/Games/vsl-ecosystem"
 
 # nhận diện realtime + ghép câu — phím: 's' ghép · 'c' xóa · 'u' xóa từ cuối · 'q' thoát
 ./run_part1.sh
 
 # huấn luyện lại từ đầu
-"$HOME/Documents/venv/bin/python" part1-sign-classifier/train.py
+"$HOME/Games/vsl-ecosystem/venv/bin/python" part1-sign-classifier/train.py
 ```
 
 ## Ghép câu thành tiếng Việt (LLM API)

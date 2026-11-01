@@ -3,8 +3,8 @@
 Base URL: `http://localhost:8002`. Format JSON.
 
 ```bash
-cd "$HOME/Documents/part3-gamification"
-"$HOME/Documents/venv/bin/python" -m backend.app        # mặc định port 8002
+cd "$HOME/Games/vsl-ecosystem/part3-gamification"
+"$HOME/Games/vsl-ecosystem/venv/bin/python" -m backend.app        # mặc định port 8002
 ```
 
 Swagger: `http://localhost:8002/docs`.

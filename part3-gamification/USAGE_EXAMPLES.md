@@ -3,7 +3,7 @@
 ## 1. Flow hoàn chỉnh qua API
 
 ```bash
-cd "$HOME/Documents"
+cd "$HOME/Games/vsl-ecosystem"
 ./venv/bin/python -m uvicorn --app-dir part3-gamification backend.app:app --port 8002 &
 # hoặc: (cd part3-gamification && ../../venv/bin/python -m backend.app)
 sleep 2
